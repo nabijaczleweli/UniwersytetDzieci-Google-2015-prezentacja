@@ -1,9 +1,10 @@
 TODO prezentacji:
 =================
 
-* Zmienne
-	- deklaracje
-	- definicje
+* <s>Zmienne</s>
+	- <s>*deklaracje*</s>
+	- <s>definicje</s>
+<br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
 * Funkcje
 	- definicje
