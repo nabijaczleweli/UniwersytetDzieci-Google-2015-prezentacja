@@ -5,12 +5,16 @@ Zmienne
 * Narrator: "I mamy przykład: `zbigniew` zawiera w sobie **Ł**, wobec czego **M** może `zbigniew`em żgnąć **Ł**"
 	- **M** żga papier, Narrator żga **Ł** w tem samem czasie <br /> LUB
 	- **M** żga **Ł**
-* **Ł** aplikuje standardowe transformacje<sup>[1](#Annotations)</sup> stosowane przy żgnięciu
+* **Ł** aplikuje standardowe transformacje<sup>[1](#annotations)</sup> stosowane przy żgnięciu
 * **M** kieruje znak równości na biurkokatedrę
 * Narrator: "**M**, dzięki magii dynamicznego typowania, może również przypisać do `zbigniew`a biurkokatedrę, i żgnąć ją"
 	- **M** żga papier, Narrator żga biurkokatedrę w tem samem czasie <br /> LUB
 	- **M** żga biurkokatedrę
-* Narrator: "dzięki magii typowania kaczkowego, ale "
+* Narrator: "dzięki magii typowania kaczkowego." *audience cheers* "Ale jeśli przypisze do `zbigniew`a podłogę"
+* **M** kieruje znak równości na podłogę
+* Narrator: "i spróbuje ją żgnąć przez `zbigniew`a to, dzięki magii typowania kaczkowego, wyrżnie jak twarzą w mur"
+* **M** upada bezwładnie
+* Narrator: "bo podłoga żgania nie obsługuje." *audience cheers*
 
 
 Annotations
