@@ -11,10 +11,14 @@ TODO prezentacji:
 	- wywoływanie
 
 * Zdarzenia
-	- `registerEventHandler`
 	- `on<цощ>`
 
+* Interop z HTML'em 
+	- &lt;input&gt;
+	- &lt;canvas&gt;
+
 * Misc.
+	- &lt;input&gt; może 
 	- Przykłady koduff
 	- SSy
 
