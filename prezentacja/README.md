@@ -6,19 +6,19 @@ TODO prezentacji:
 	- <s>definicje</s>
 <br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
-* Funkcje
-	- definicje
-	- wywoływanie
+* <s>Funkcje</s>
+	- <s>definicje</s>
+	- <s>wywoływanie</s>
+<br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
 * Zdarzenia
 	- `on<цощ>`
 
-* Interop z HTML'em 
+* Interop z HTML'em
 	- &lt;input&gt;
 	- &lt;canvas&gt;
 
 * Misc.
-	- &lt;input&gt; może 
 	- Przykłady koduff
 	- SSy
 
