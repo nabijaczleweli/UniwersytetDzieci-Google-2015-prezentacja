@@ -36,3 +36,7 @@ Acknowledgements
 
 * Narrator to prawdopodobnie **J**
 * **Ł** nie ma desygnowanej roboty (chyba)
+* Ludzie to:
+	- **Ł** — Łucja Hanna Biała
+	- **M** — Maja Miłek
+	- **J** — [@nabijaczleweli](https://github.com/nabijaczleweli)
