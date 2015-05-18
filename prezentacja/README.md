@@ -17,3 +17,6 @@ TODO prezentacji:
 * Misc.
 	- Przykłady koduff
 	- SSy
+
+[Show](The Show.md)
+===================
