@@ -1,0 +1,12 @@
+/* A hack to fill the entire screen with canvas */
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+}
+
+@font-face {
+	font-family: codeFont;
+	src: url(../resources/DroidSansMono.ttf);
+}

@@ -11,16 +11,20 @@ TODO prezentacji:
 	- <s>wywoływanie</s>
 <br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
-* Zdarzenia
-	- `on<цощ>`
+* <s>Zdarzenia</s>
+	- <s>`on<цощ>`</s>
+<br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
-* Interop z HTML'em
-	- &lt;input&gt;
-	- &lt;canvas&gt;
+* <s>Interop z HTML'em</s>
+	- <s>&lt;input&gt;</s>
+	- <s>&lt;canvas&gt;</s>
+<br />-- [@nabijaczleweli](https://github.com/nabijaczleweli), needs revising
 
 * Misc.
-	- Przykłady koduff
+	- <s>Przykłady koduff</s>
+<br />do &lt;canvas&gt;a tylko na razie, nie ma do &lt;input&gt;a
 	- SSy
+<br />on hold -- replaced wholly by examples?
 
 [Show](The Show.md)
 ===================
