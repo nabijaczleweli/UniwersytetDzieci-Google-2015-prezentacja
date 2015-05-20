@@ -1,0 +1,11 @@
+@import url(../resources/basestyle.css);
+
+span.desc {
+	float: right;
+}
+
+div {
+	border-top: 1px dashed gray;
+	border-bottom: 1px dashed gray;
+	padding: 2px;
+}
