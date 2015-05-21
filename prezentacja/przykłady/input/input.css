@@ -4,8 +4,26 @@ span.desc {
 	float: right;
 }
 
-div {
+span.unsupported {
+	width: 85%;
+	position: fixed;
+	text-align: center;
+	color: red;
+}
+
+div:not(.credit) {
 	border-top: 1px dashed gray;
 	border-bottom: 1px dashed gray;
 	padding: 2px;
+	width: 100%;
+}
+
+div.credit {
+	font-family: codeFont;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+
+	color: gray;
+	text-align: center;
 }
