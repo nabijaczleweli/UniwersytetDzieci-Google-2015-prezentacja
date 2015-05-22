@@ -121,11 +121,12 @@ function buttonCallback() {
 
 		// Timeout-chain is forever, once launched
 		const cbk = function() {
-			if(ctr > 0)
-				e.originalTarget.value = ctr-- + 'ms';
-			else
+			if(ctr > 0) {
+				e.originalTarget.value = ctr + 'ms';
+				ctr = Math.max(0, ctr - 3);
+			} else
 				e.originalTarget.value = '';
-			setTimeout(cbk, 1);
+			setTimeout(cbk, 3);
 		};
 
 		if(!launched) {
