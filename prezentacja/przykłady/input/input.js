@@ -13,10 +13,6 @@ const typeToCallback = {
 		'eventName': 'change',
 		'callback': checkboxCallback
 	},
-	'color': {
-		'eventName': 'change',
-		'callback': checkboxCallback
-	},
 	'email': {
 		'eventName': 'change',
 		'callback': emailCallback
@@ -44,6 +40,30 @@ const typeToCallback = {
 	'search': {
 		'eventName': 'change',
 		'callback': searchCallback
+	},
+	'submit': {
+		'eventName': 'click',
+		'callback': submitCallback
+	},
+	'tel': {
+		'eventName': 'change',
+		'callback': telCallback
+	},
+	'text': {
+		'eventName': 'change',
+		'callback': textCallback
+	},
+	'hidden': {
+		'eventName': 'change',
+		'callback': hiddenCallback
+	},
+	'image': {
+		'eventName': 'click',
+		'callback': imageCallback
+	},
+	'url': {
+		'eventName': 'change',
+		'callback': urlCallback
 	}
 };
 
@@ -232,9 +252,8 @@ function rangeCallback(e) {
 function resetCallback(e) {
 	window.location.reload();
 }
-function searchCallback(e) {
-	// file:///p:/Google/UniwersytetDzieci-Google-2015-prezentacja/prezentacja/przyk%C5%82ady/input/input.js
 
+function searchCallback(e) {
 	const input = e.originalTarget;
 	var descriptionNode = input.nextElementSibling;
 
@@ -260,4 +279,121 @@ function searchCallback(e) {
 	}
 	request.open('GET', me.src);
 	request.send();
+}
+
+function submitCallback(e) {
+	const input = e.originalTarget;
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode('This would auto-submit a form if there were any!'));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+}
+
+function telCallback(e) {
+	const input = e.originalTarget;
+	input.setAttribute('pattern', '[0-9]{9}');
+
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	if(input.validity.valid)
+		descriptionNode.textContent = 'Your phone number is: ' + input.value.substr(0, 3) + '-' + input.value.substr(3, 3) + '-' + input.value.substr(6, 3);
+	else
+		descriptionNode.textContent = 'This ain\'t no phone number!';
+}
+
+function textCallback(e) {
+	const input = e.originalTarget;
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	descriptionNode.textContent = 'This is the standard type of an <input> tag... Value: "' + input.value + '"';
+}
+
+function hiddenCallback(e) {
+	const input = e.originalTarget;
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	descriptionNode.textContent = 'This is virtually impossible!';
+}
+
+function imageCallback(e) {
+	const input = e.originalTarget;
+	input.setAttribute('src', '../resources/image_tag.jpg');
+	input.setAttribute('width', 100);
+	input.setAttribute('height', 100);
+
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	descriptionNode.textContent = 'All this really does, is it lets you choose an image instead of a button, so have some Snoop';
+}
+
+function urlCallback(e) {
+	const input = e.originalTarget;
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('A');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	if(input.validity.valid) {
+		descriptionNode.textContent = 'I will take you to your most hidden desires';
+		descriptionNode.href = input.value;
+		descriptionNode.style.pointerEvents = '';
+	} else {
+		descriptionNode.textContent = 'This ain\'t no link!';
+		descriptionNode.href = 'javascript:';
+		descriptionNode.style.pointerEvents = 'none';
+	}
 }

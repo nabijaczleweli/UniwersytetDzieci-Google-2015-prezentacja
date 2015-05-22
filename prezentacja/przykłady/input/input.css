@@ -6,7 +6,7 @@ span.desc {
 
 span.unsupported {
 	width: 85%;
-	position: fixed;
+	position: absolute;
 	text-align: center;
 	color: red;
 }
@@ -26,4 +26,8 @@ div.credit {
 
 	color: gray;
 	text-align: center;
+}
+
+body {
+  overflow: hidden;
 }
