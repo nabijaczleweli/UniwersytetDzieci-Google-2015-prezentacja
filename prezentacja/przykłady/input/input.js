@@ -166,8 +166,15 @@ function emailCallback(e) {
 		input.parentNode.insertBefore(anchorNode, after);
 	}
 
-	anchorNode.textContent = input.value;
-	anchorNode.href = 'mailto:' + input.value;
+	if(input.validity.valid) {
+		anchorNode.textContent = input.value;
+		anchorNode.href = 'mailto:' + input.value;
+		anchorNode.style.pointerEvents = '';
+	} else {
+		anchorNode.textContent = 'This ain\'t no email!';
+		anchorNode.href = 'javascript:';
+		anchorNode.style.pointerEvents = 'none';
+	}
 }
 
 function fileCallback(e) {
@@ -375,25 +382,25 @@ function imageCallback(e) {
 
 function urlCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
+	var anchorNode = input.nextElementSibling;
 
 	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
+	if(anchorNode.className !== '') {
+		const after = anchorNode;
 
-		descriptionNode = document.createElement('A');
-		descriptionNode.appendChild(document.createTextNode(''));
+		anchorNode = document.createElement('A');
+		anchorNode.appendChild(document.createTextNode(''));
 
-		input.parentNode.insertBefore(descriptionNode, after);
+		input.parentNode.insertBefore(anchorNode, after);
 	}
 
 	if(input.validity.valid) {
-		descriptionNode.textContent = 'I will take you to your most hidden desires';
-		descriptionNode.href = input.value;
-		descriptionNode.style.pointerEvents = '';
+		anchorNode.textContent = 'I will take you to your most hidden desires';
+		anchorNode.href = input.value;
+		anchorNode.style.pointerEvents = '';
 	} else {
-		descriptionNode.textContent = 'This ain\'t no link!';
-		descriptionNode.href = 'javascript:';
-		descriptionNode.style.pointerEvents = 'none';
+		anchorNode.textContent = 'This ain\'t no link!';
+		anchorNode.href = 'javascript:';
+		anchorNode.style.pointerEvents = 'none';
 	}
 }
