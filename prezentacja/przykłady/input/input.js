@@ -3,6 +3,7 @@
 
 var inputs;
 
+const me = document.currentScript;
 const typeToCallback = {
 	'button': {
 		'eventName': 'click',
@@ -31,6 +32,18 @@ const typeToCallback = {
 	'radio': {
 		'eventName': 'change',
 		'callback': radioCallback
+	},
+	'range': {
+		'eventName': 'change',
+		'callback': rangeCallback
+	},
+	'reset': {
+		'eventName': 'click',
+		'callback': resetCallback
+	},
+	'search': {
+		'eventName': 'change',
+		'callback': searchCallback
 	}
 };
 
@@ -193,4 +206,58 @@ function radioCallback(e) {
 			input.checked = false;
 		}, 5000);
 	}
+}
+
+function rangeCallback(e) {
+	const input = e.originalTarget;
+	if(input.min === '')
+		input.min = (Math.random() * 100).toFixed();
+	if(input.max === '')
+		input.max = input.min + (Math.random() * 10000).toFixed();
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+	descriptionNode.textContent = input.value + ' \u21D2 ' + ((input.value / (input.max - input.min)) * 100).toFixed(2) + '%';
+}
+
+function resetCallback(e) {
+	window.location.reload();
+}
+function searchCallback(e) {
+	// file:///p:/Google/UniwersytetDzieci-Google-2015-prezentacja/prezentacja/przyk%C5%82ady/input/input.js
+
+	const input = e.originalTarget;
+	var descriptionNode = input.nextElementSibling;
+
+	// Dynamically append description node
+	if(descriptionNode.className !== '') {
+		const after = descriptionNode;
+
+		descriptionNode = document.createElement('SPAN');
+		descriptionNode.appendChild(document.createTextNode(''));
+
+		input.parentNode.insertBefore(descriptionNode, after);
+	}
+
+
+	const request = new XMLHttpRequest();
+	request.onload = function(load) {
+		const contains = load.target.responseText.contains(input.value)
+
+		descriptionNode.textContent = 'The source script does ';
+		if(!contains)
+			descriptionNode.textContent += 'not ';
+		descriptionNode.textContent += 'contain the string "' + input.value + '"';
+	}
+	request.open('GET', me.src);
+	request.send();
 }

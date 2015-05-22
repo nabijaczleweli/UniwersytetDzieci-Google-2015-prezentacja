@@ -24,7 +24,7 @@ TODO prezentacji:
 	- <s>Przykłady koduff</s>
 <br />do &lt;canvas&gt;a tylko na razie, nie ma do &lt;input&gt;a
 	- <s>SSy</s>
-<br /> -- replaced by examples?
+<br /> -- replaced by examples
 
 [Show](The Show.md)
 ===================
