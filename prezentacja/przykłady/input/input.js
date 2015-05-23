@@ -4,7 +4,7 @@
 var inputs;
 
 const me = document.currentScript;
-const typeToCallback = {
+const typeToCallback = Object.freeze({
 	'button': {
 		'eventName': 'click',
 		'callback': buttonCallback()
@@ -65,7 +65,7 @@ const typeToCallback = {
 		'eventName': 'change',
 		'callback': urlCallback
 	}
-};
+});
 
 
 window.onload = function() {
@@ -110,6 +110,22 @@ function inputTypeSupported(type) {
 	return false;
 }
 
+function nextOrCreate(nextto, nodetype, excludeclass = '') {
+	var node = nextto.nextElementSibling;
+
+	// Dynamically append node
+	if(node.className !== excludeclass) {
+		const after = node;
+
+		node = document.createElement(nodetype);
+		node.appendChild(document.createTextNode(''));
+
+		nextto.parentNode.insertBefore(node, after);
+	}
+
+	return node;
+}
+
 
 // For data encapsulation (`ctr` and `launched` not at global scope)
 function buttonCallback() {
@@ -138,34 +154,12 @@ function buttonCallback() {
 
 function checkboxCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = input.checked;
+	nextOrCreate(input, 'SPAN').textContent = input.checked;
 }
 
 function emailCallback(e) {
 	const input = e.originalTarget;
-	var anchorNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(anchorNode.className !== '') {
-		const after = anchorNode;
-
-		anchorNode = document.createElement('A');
-		anchorNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(anchorNode, after);
-	}
+	const anchorNode = nextOrCreate(input, 'A');
 
 	if(input.validity.valid) {
 		anchorNode.textContent = input.value;
@@ -180,17 +174,7 @@ function emailCallback(e) {
 
 function fileCallback(e) {
 	const input = e.originalTarget;
-	var anchorNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(anchorNode.className !== '') {
-		const after = anchorNode;
-
-		anchorNode = document.createElement('A');
-		anchorNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(anchorNode, after);
-	}
+	var anchorNode = nextOrCreate(input, 'A');
 
 	anchorNode.textContent = 'Download/open ' + input.files[0].name;
 	anchorNode.href = URL.createObjectURL(input.files[0]);
@@ -198,34 +182,12 @@ function fileCallback(e) {
 
 function passwordCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = 'Psst! Your password is "' + input.value + '"';
+	nextOrCreate(input, 'SPAN').textContent = 'Psst! Your password is "' + input.value + '"';
 }
 
 function radioCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
+	var descriptionNode = nextOrCreate(input, 'SPAN');
 
 	if(input.checked) {
 		descriptionNode.textContent = 'Noooooo! Why did you check it!';
@@ -242,19 +204,8 @@ function rangeCallback(e) {
 		input.min = (Math.random() * 100).toFixed();
 	if(input.max === '')
 		input.max = input.min + (Math.random() * 10000).toFixed();
-	var descriptionNode = input.nextElementSibling;
 
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = input.value + ' \u21D2 ' + ((input.value / (input.max - input.min)) * 100).toFixed(2) + '%';
+	nextOrCreate(input, 'SPAN').textContent = input.value + ' \u21D2 ' + ((input.value / (input.max - input.min)) * 100).toFixed(2) + '%';
 }
 
 function resetCallback(e) {
@@ -263,18 +214,7 @@ function resetCallback(e) {
 
 function searchCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
+	const descriptionNode = nextOrCreate(input, 'SPAN')
 
 	const request = new XMLHttpRequest();
 	request.onload = function(load) {
@@ -291,34 +231,14 @@ function searchCallback(e) {
 
 function submitCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode('This would auto-submit a form if there were any!'));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
+	nextOrCreate(input, 'SPAN').textContent = 'This would auto-submit a form if there were any!';
 }
 
 function telCallback(e) {
 	const input = e.originalTarget;
 	input.setAttribute('pattern', '[0-9]{9}');
 
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
+	const descriptionNode = nextOrCreate(input, 'SPAN')
 
 	if(input.validity.valid)
 		descriptionNode.textContent = 'Your phone number is: ' + input.value.substr(0, 3) + '-' + input.value.substr(3, 3) + '-' + input.value.substr(6, 3);
@@ -328,36 +248,12 @@ function telCallback(e) {
 
 function textCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = 'This is the standard type of an <input> tag... Value: "' + input.value + '"';
+	nextOrCreate(input, 'SPAN').textContent = 'This is the standard type of an <input> tag... Value: "' + input.value + '"';
 }
 
 function hiddenCallback(e) {
 	const input = e.originalTarget;
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = 'This is virtually impossible!';
+	nextOrCreate(input, 'SPAN').textContent = 'This is virtually impossible!';
 }
 
 function imageCallback(e) {
@@ -366,34 +262,12 @@ function imageCallback(e) {
 	input.setAttribute('width', 100);
 	input.setAttribute('height', 100);
 
-	var descriptionNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(descriptionNode.className !== '') {
-		const after = descriptionNode;
-
-		descriptionNode = document.createElement('SPAN');
-		descriptionNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(descriptionNode, after);
-	}
-
-	descriptionNode.textContent = 'All this really does, is it lets you choose an image instead of a button, so have some Snoop';
+	nextOrCreate(input, 'SPAN').textContent = 'All this really does, is it lets you choose an image instead of a button, so have some Snoop';
 }
 
 function urlCallback(e) {
 	const input = e.originalTarget;
-	var anchorNode = input.nextElementSibling;
-
-	// Dynamically append description node
-	if(anchorNode.className !== '') {
-		const after = anchorNode;
-
-		anchorNode = document.createElement('A');
-		anchorNode.appendChild(document.createTextNode(''));
-
-		input.parentNode.insertBefore(anchorNode, after);
-	}
+	var anchorNode = nextOrCreate(input, 'A')
 
 	if(input.validity.valid) {
 		anchorNode.textContent = 'I will take you to your most hidden desires';
